@@ -65,7 +65,7 @@ POST http://localhost:3000/api/save
 Actualiza un usuario mediante su ID.
 
 ```http
-PUT http://localhost:3000/api/put/1
+PUT http://localhost:3000/api/put/id
 ```
 
 ### DELETE
@@ -73,5 +73,5 @@ PUT http://localhost:3000/api/put/1
 Elimina un usuario mediante su ID.
 
 ```http
-DELETE http://localhost:3000/api/delete/1
+DELETE http://localhost:3000/api/delete/id
 ```
