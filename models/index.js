@@ -1,12 +1,32 @@
-import express from 'express';
-import { z } from 'zod';
-import { id } from 'zod/locales';
+import mongoose from 'mongoose';
 
-const userSchema = z.object({
-  id: z.number().int().positive(),
-  username: z.string().min(3),
-  email: z.string().email(),
-  age: z.number().optional()
+// Define la estructura de un usuario
+const userSchema = new mongoose.Schema({
+  // Nombre de usuario
+  username: {
+    type: String,
+    required: true,
+    minlength: 3,
+    maxlength: 30
+  },
+
+  // Correo electrónico
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+  },
+
+  // Contraseña del usuario
+  password: {
+    type: String,
+    required: true
+  }
 });
 
-export default userSchema;
+// Crea el modelo para trabajar con los usuarios
+const AuthUser = mongoose.model('User', userSchema);
+
+// Exporta el modelo para usarlo en otros archivos
+export default AuthUser;
